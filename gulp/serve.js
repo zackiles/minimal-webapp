@@ -72,6 +72,9 @@ gulp.task('serve-dist', function(cb){
     'injector:js',
     'injector:partials',
     'html',
+    'images',
+    'fonts',
+    'other',
   function(result){
       browserSyncInit(conf.paths.dist);
       cb(result);
