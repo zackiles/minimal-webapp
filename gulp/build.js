@@ -161,10 +161,11 @@ gulp.task('images', function () {
 });
 
 gulp.task('other', function () {
-  var icon = gulp.src(conf.paths.src + 'favicon.ico').pipe(gulp.dest('dist/'));
-  var robots = gulp.src(conf.paths.src + 'robots.txt').pipe(gulp.dest('dist/'));
+  var icon = gulp.src(conf.paths.src + 'favicon.ico');
+  var robots = gulp.src(conf.paths.src + 'robots.txt');
 
-  return es.merge(icon, robots);
+  return es.merge(icon, robots)
+    .pipe(gulp.dest(conf.paths.dist));
 });
 
 

@@ -36,3 +36,6 @@ build, clean, serve, serve-dist
 - Ng-Annotae
 - Sourcemaps
 - Place files anywhere in src/app or src/components
+
+####OTHER
+- Imagemin
