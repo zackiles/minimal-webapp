@@ -5,10 +5,7 @@ Gulp, Angular, Font Awesome, Bootstrap, SCSS (no js).
 Needed something for myself that was less bulky, uses the latest gulp libraries and npm packages, and that bypassed a lot of the tiny annoying bugs with current generators. I also wanted a development build that used a template cache to help speed up browser reloads in projects with many templates.
 
 ###Gulp Commands
-gulp build
-gulp clean
-gulp serve
-gulp serve-dist
+build, clean, serve, serve-dist
 
 ##Plugins Used
 
