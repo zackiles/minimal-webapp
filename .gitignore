@@ -1,0 +1,5 @@
+dist/
+.tmp/
+project.geany
+node_modules
+bower_components

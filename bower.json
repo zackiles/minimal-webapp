@@ -1,0 +1,24 @@
+{
+  "name": "minimal-webapp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/zackiles/minimal-webapp",
+  "authors": [
+    "Zachary Iles <zack.iles@gmail.com>"
+  ],
+  "description": "Gulp, Angular, Font Awesome, Bootstrap, SCSS (no js)",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/src/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.17",
+    "bootstrap-sass": "~3.3.5",
+    "angular-ui-router": "~0.2.15",
+    "font-awesome": "~4.4.0"
+  }
+}

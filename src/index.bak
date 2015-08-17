@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="/">
+  <title>Hello World</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css styles/app.css -->
+    <!-- inject:css -->
+    <!-- endinject -->
+  <!-- endbuild -->
+  <script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
+</head>
+
+  <body ng-app="app">
+    <!--[if lt IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <p class="js-warning"><strong>You don't have Javascript enabled.</strong> Please enable Javascript in your browser settings before viewing this site.</p>
+
+    <div ui-view=""></div>
+
+
+    <!-- build:js scripts/vendor.js -->
+      <!-- bower:js -->
+      <!-- endbower -->
+     <!-- endbuild -->
+
+
+    <!-- build:js scripts/app.js -->
+      <!-- inject:js -->
+      <!-- endinject -->
+      <!-- inject:partials -->
+      <!-- endinject -->
+    <!-- endbuild -->
+
+</body>
+</html>

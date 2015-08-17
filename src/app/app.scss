@@ -1,0 +1,39 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../bower_components/font-awesome/scss/font-awesome';
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic);
+
+%browser-warning {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.browser-warning {
+  @extend %browser-warning;
+}
+
+.no-js .js-warning {
+  @extend %browser-warning;
+}
+.js .js-warning {
+  display: none;
+  visibility: hidden;
+}
+
+body {
+  margin:0;
+  padding:0;
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+// injector
+@import '../assets/styles/bootstrap-overrides.scss';
+@import 'home/home.scss';
+// endinjector
