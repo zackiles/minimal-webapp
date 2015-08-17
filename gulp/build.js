@@ -165,6 +165,15 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('build', function(cb){
-  runSequence('clean', 'wiredep', 'injector:css', 'injector:js', 'injector:partials', 'html', cb);
+  runSequence(
+    'clean',
+    'wiredep',
+    'injector:css',
+    'injector:js',
+    'injector:partials',
+    'html',
+    'images',
+    'fonts',
+  cb);
 });
 

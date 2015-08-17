@@ -49,15 +49,30 @@ function browserSyncInit(baseDir, browser) {
     browser: browser
   });
 }
+
 browserSync.use(browserSyncSpa({
   selector: '[ng-app]'
 }));
 
 gulp.task('serve', function(cb){
-  runSequence('clean', 'wiredep', 'injector:css', 'injector:js', 'injector:partials','watch', cb);
+  runSequence(
+    'clean',
+    'wiredep',
+    'injector:css',
+    'injector:js',
+    'injector:partials',
+  cb);
 });
+
 gulp.task('serve-dist', function(cb){
-  runSequence('clean', 'wiredep', 'injector:css', 'injector:js', 'injector:partials', 'html', function(result){
+  runSequence(
+    'clean',
+    'wiredep',
+    'injector:css',
+    'injector:js',
+    'injector:partials',
+    'html',
+  function(result){
       browserSyncInit(conf.paths.dist);
       cb(result);
   });
