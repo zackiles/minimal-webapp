@@ -164,7 +164,7 @@ gulp.task('other', function () {
   var icon = gulp.src(conf.paths.src + 'favicon.ico').pipe(gulp.dest('dist/'));
   var robots = gulp.src(conf.paths.src + 'robots.txt').pipe(gulp.dest('dist/'));
 
-  return $.eventStream.concat(icon, robots);
+  return es.merge(icon, robots);
 });
 
 
