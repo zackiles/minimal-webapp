@@ -34,12 +34,8 @@ gulp.task('injector:css', ['styles'], function () {
 
 gulp.task('injector:js', ['scripts'], function () {
   return gulp.src(conf.paths.tmp + 'index.html')
-    .pipe($.inject(gulp.src([
-      conf.paths.src + '{app,components}/**/*.js',
-      '!' + conf.paths.src + '{app,components}/**/*.spec.js',
-      '!' + conf.paths.src + '{app,components}/**/*.mock.js'
-    ]).pipe($.angularFilesort()), {
-      ignorePath: 'src',
+    .pipe($.inject(conf.pipes.scripts().pipe($.angularFilesort()), {
+      ignorePath: conf.paths.src,
       addRootSlash: false
     }))
     .pipe(gulp.dest(conf.paths.tmp));
@@ -57,11 +53,7 @@ gulp.task('injector:partials', ['partials'], function () {
 
 gulp.task('styles', function(){
   return gulp.src(conf.paths.src + 'app/app.scss')
-    .pipe($.inject(gulp.src([
-        conf.paths.src + 'assets/styles/**/*.scss',
-        conf.paths.src + '{app,components}/**/*.scss',
-        '!' + conf.paths.src + 'app/app.scss'
-      ], {read: false}), {
+    .pipe($.inject(conf.pipes.scss({read: false}), {
       transform: function(filePath) {
         filePath = filePath.replace(conf.paths.src + 'app/', '');
         filePath = filePath.replace(conf.paths.src + 'components/', '../components/');
@@ -96,7 +88,7 @@ gulp.task('partials', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src(conf.paths.src + '{app,components}/**/*.js')
+  return conf.pipes.scripts()
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.size());

@@ -1,18 +1,33 @@
 'use strict';
 
-var gutil = require('gulp-util'),
+var gulp = require('gulp'),
+		gutil = require('gulp-util'),
     path = require('path');
 
+// keep backslashes
 var paths = {
-  src: 'src',
-  dist: 'dist',
-  tmp: '.tmp'
+  src: 'src/',
+  dist: 'dist/',
+  tmp: '.tmp/'
 };
 
-exports.paths = {
-  src: path.join(paths.src, '/'),
-  dist: path.join(paths.dist, '/'),
-  tmp: path.join(paths.tmp, '/')
+exports.paths = paths;
+
+exports.pipes = {
+	scripts: function(config){
+		return gulp.src([
+			paths.src + '{app,components}/**/*.js',
+			'!' + paths.src + '{app,components}/**/*.spec.js',
+			'!' + paths.src + '{app,components}/**/*.mock.js'
+		], config || {});
+	},
+	scss: function(config){
+		return gulp.src([
+			paths.src + 'assets/styles/**/*.scss',
+			paths.src + '{app,components}/**/*.scss',
+			'!' + paths.src + 'app/app.scss'
+		], config || {});
+	}
 };
 
 exports.errorHandler = function(title) {
