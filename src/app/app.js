@@ -13,7 +13,8 @@
 	})
 	
 	.run(function(ENV){
-		console.log('application loaded in ' + ENV.name + ' mode.');
+		console.log(ENV.application + ' loaded in ' + ENV.name + ' mode.');
+		console.log('Build date ' + ENV.buildDate);
 	});
 
 })();
