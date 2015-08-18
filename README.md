@@ -31,10 +31,11 @@ build, clean, serve, serve-dist
 ####JS
 - Inject
 - Wiredep
+- Minify
 - Jshint
 - Uglify (with save license)
 - Ng-Annotate
-- NgConstant (add angular configs for different build environments)
+- Ng-Constant (add angular configs for different build environments)
 - Sourcemaps
 - Place files anywhere in src/app or src/components
 
