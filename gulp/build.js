@@ -135,7 +135,7 @@ gulp.task('html', function () {
 
 gulp.task('fonts', function () {
   var vendorFonts = gulp.src(bowerFiles.ext(['eot','svg','ttf','otf','woff','woff2']).files);
-  var extraFonts =  gulp.src([conf.paths.src + 'assets/fonts**/*.{eot,svg,ttf,woff,otf,woff2}']);
+  var extraFonts =  gulp.src([conf.paths.src + 'assets/fonts/**/*.{eot,svg,ttf,woff,otf,woff2}']);
 
   return es.merge(vendorFonts, extraFonts)
     .pipe($.flatten())
