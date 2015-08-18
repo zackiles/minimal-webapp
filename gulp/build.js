@@ -72,7 +72,7 @@ gulp.task('styles', function(){
 
 gulp.task('partials', function () {
   return gulp.src(conf.paths.src + '{app,components}/**/*.html')
-    .pipe($.debug({title: 'Minifying:'}))
+    .pipe($.debug({title: 'Minifying Template:'}))
     .pipe($.htmlmin({
       removeComments : true,
       caseSensitive: true,
@@ -110,8 +110,8 @@ gulp.task('html', function () {
     .pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe($.replace('bower_components/bootstrap-sass-jsless/assets/fonts/bootstrap','fonts'))
-    .pipe($.replace('bower_components/font-awesome/fonts','fonts'))
+    .pipe($.replace('bower_components/bootstrap-sass/assets/fonts/bootstrap','assets/fonts'))
+    .pipe($.replace('bower_components/font-awesome/fonts','assets/fonts'))
     .pipe($.minifyCss({ processImport: false }))
     .pipe($.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
@@ -119,7 +119,7 @@ gulp.task('html', function () {
     .pipe($.useref())
     .pipe($.revReplace())
     .pipe(htmlFilter)
-    .pipe($.debug({title: 'Minifying:'}))
+    .pipe($.debug({title: 'Building:'}))
     .pipe($.htmlmin({
       removeComments : true,
       caseSensitive: true,
@@ -134,22 +134,29 @@ gulp.task('html', function () {
 });
 
 gulp.task('fonts', function () {
-  var vendorFonts = gulp.src(bowerFiles.ext(['eot','svg','ttf','otf','woff','woff2']).files);
-  var extraFonts =  gulp.src([conf.paths.src + 'assets/fonts/**/*.{eot,svg,ttf,woff,otf,woff2}']);
+  var vendorFonts = gulp.src(bowerFiles.ext(['eot','svg','ttf','otf','woff','woff2']).files).pipe($.flatten());
+  var extraFonts =  gulp.src([
+		conf.paths.src + 'assets/fonts/**/*.{eot,svg,ttf,woff,otf,woff2}',
+		conf.paths.src + 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.{eot,svg,ttf,woff,otf,woff2}',
+		conf.paths.src + 'bower_components/font-awesome/fonts/*.{eot,svg,ttf,woff,otf,woff2}'
+	]);
 
   return es.merge(vendorFonts, extraFonts)
-    .pipe($.flatten())
-    .pipe(gulp.dest(conf.paths.dist + 'fonts/'));
+		.pipe($.debug({title: 'Compressing Font:'}))
+    .pipe(gulp.dest(conf.paths.dist + 'assets/fonts/'))
+    .pipe($.size({ title: conf.paths.dist, showFiles: true }));
 });
 
 gulp.task('images', function () {
   return gulp.src(conf.paths.src + 'assets/images/**/*')
+	  .pipe($.debug({title: 'Minifying Image:'}))
     .pipe($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest(conf.paths.dist + 'assets/images/'));
+    .pipe(gulp.dest(conf.paths.dist + 'assets/images/'))
+    .pipe($.size({ title: conf.paths.dist, showFiles: true }));
 });
 
 gulp.task('other', function () {
@@ -157,7 +164,8 @@ gulp.task('other', function () {
   var robots = gulp.src(conf.paths.src + 'robots.txt');
 
   return es.merge(icon, robots)
-    .pipe(gulp.dest(conf.paths.dist));
+    .pipe(gulp.dest(conf.paths.dist))
+    .pipe($.size({ title: conf.paths.dist, showFiles: true }));
 });
 
 
