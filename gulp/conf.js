@@ -1,21 +1,24 @@
 'use strict';
 
-var gutil = require('gulp-util'),
+var gulp = require('gulp'),
+		gutil = require('gulp-util'),
     path = require('path');
 
+var paths = {
+	// KEEP DIR BACKSLASHES
+	src: 'src/',
+	dist: 'dist/',
+	tmp: '.tmp/'
+};
+
 module.exports = {
+	paths: paths,
   server:  {
 		port: 9090,
 		proxy: {
 			path: '/api',
 			location: 'http://localhost:3000/api'
 		}
-	},
-  paths: {
-		// KEEP DIR BACKSLASHES
-		src: 'src/',
-		dist: 'dist/',
-		tmp: '.tmp/'
 	},
 	pipes: {
 		scripts: function(config){

@@ -2,9 +2,36 @@
 
 var conf = require('./conf'),
     gulp = require('gulp'),
+    url = require('url'),
     runSequence = require('run-sequence').use(gulp),
     browserSync = require('browser-sync').create(),
-    browserSyncSpa = require('browser-sync-spa');
+    browserSyncSpa = require('browser-sync-spa'),
+    proxy = require('proxy-middleware');
+
+
+function browserSyncReload(event){
+  browserSync.reload(event.path);
+}
+
+function browserSyncInit(baseDir, browser) {
+  browser = browser === undefined ? 'default' : browser;
+	var proxyOptions = url.parse(conf.server.proxy.location);
+	proxyOptions.route = conf.server.proxy.path;
+	
+  browserSync.instance = browserSync.init({
+		open: true,
+		port: conf.server.port,
+    startPath: '/',
+    server: {
+      baseDir: baseDir,
+      middleware: [proxy(proxyOptions)]
+    },
+    online: false,
+    reloadDebounce: 5000,
+    reloadDelay: 2000,
+    browser: browser
+  });
+}
 
 gulp.task('watch', function(cb){
   browserSyncInit([conf.paths.tmp, conf.paths.src]);
@@ -31,25 +58,6 @@ gulp.task('watch', function(cb){
   cb();
 });
 
-function browserSyncReload(event){
-  browserSync.reload(event.path);
-}
-
-function browserSyncInit(baseDir, browser) {
-  browser = browser === undefined ? 'default' : browser;
-
-  browserSync.instance = browserSync.init({
-    startPath: '/',
-    server: {
-      baseDir: baseDir
-    },
-    online: false,
-    reloadDebounce: 5000,
-    reloadDelay: 2000,
-    browser: browser
-  });
-}
-
 browserSync.use(browserSyncSpa({
   selector: '[ng-app]'
 }));
@@ -61,6 +69,7 @@ gulp.task('serve', function(cb){
     'injector:css',
     'injector:js',
     'injector:partials',
+    'watch',
   cb);
 });
 

@@ -54,6 +54,7 @@
     "gulp-useref": "^1.3.0",
     "gulp-util": "^3.0.6",
     "jshint-stylish": "^2.0.1",
+    "proxy-middleware": "^0.13.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.2",
     "uglify-save-license": "^0.4.1",
