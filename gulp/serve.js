@@ -65,6 +65,7 @@ browserSync.use(browserSyncSpa({
 gulp.task('serve', function(cb){
   runSequence(
     'clean',
+    'ng-config-development',
     'wiredep',
     'injector:css',
     'injector:js',
@@ -74,17 +75,7 @@ gulp.task('serve', function(cb){
 });
 
 gulp.task('serve-dist', function(cb){
-  runSequence(
-    'clean',
-    'wiredep',
-    'injector:css',
-    'injector:js',
-    'injector:partials',
-    'html',
-    'images',
-    'fonts',
-    'other',
-  function(result){
+  runSequence('build', function(result){
       browserSyncInit(conf.paths.dist);
       cb(result);
   });

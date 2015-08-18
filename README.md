@@ -33,9 +33,11 @@ build, clean, serve, serve-dist
 - Wiredep
 - Jshint
 - Uglify (with save license)
-- Ng-Annotae
+- Ng-Annotate
+- NgConstant (add angular configs for different build environments)
 - Sourcemaps
 - Place files anywhere in src/app or src/components
 
 ####OTHER
 - Imagemin
+- Proxy Middleware (for development testing with external API route)

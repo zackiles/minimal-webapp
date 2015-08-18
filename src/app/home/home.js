@@ -8,8 +8,7 @@
           url: '/',
           templateUrl: 'app/home/home.html',
           controller: function($scope){
-            $scope.text= 'test';
-            console.log('hello');
+            console.log('controller loaded');
           }
         });
     });

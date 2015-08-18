@@ -168,6 +168,7 @@ gulp.task('clean', function (cb) {
 gulp.task('build', function(cb){
   runSequence(
     'clean',
+    'ng-config-production',
     'wiredep',
     'injector:css',
     'injector:js',
