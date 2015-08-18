@@ -49,7 +49,7 @@ gulp.task('watch', function(cb){
     .on('change',  browserSyncReload)
     .on('error',  conf.errorHandler);
 
-  gulp.watch(conf.paths.src +'{app,components}/**/*.html', ['injector.partials'])
+  gulp.watch(conf.paths.src +'{app,components}/**/*.html', ['injector:partials'])
     .on('error',  conf.errorHandler);
 
   gulp.watch(conf.paths.tmp + "index.html")
